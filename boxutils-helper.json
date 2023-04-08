@@ -1,0 +1,9 @@
+{
+  "name": "jp.toke.boxutils_helper",
+  "description": "Native helper application for BoxUtils",
+  "path": "boxutils-helper.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://__EXTENSION_ID__/"
+  ]
+}
