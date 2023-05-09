@@ -1,5 +1,5 @@
 # BoxUtilsHelper
-BoxUtilsHelper はChrome拡張機能 [BoxUtils](https://github.com/sattoke/BoxUtils) と連動して動作する補助ソフトである。
+BoxUtilsHelper はChrome拡張機能 BoxUtils ( [chrome ウェブストア](https://chrome.google.com/webstore/detail/boxutils/gagpkhipmdbjnflmcfjjchoielldogmm) 、 [GitHub](https://github.com/sattoke/BoxUtils) ) と連動して動作する補助ソフトである。
 BoxUtilsから直接ローカルのOS上でフォルダやファイルを開く機能を使うときに必要となる。
 
 # インストーラーの作成方法
@@ -15,7 +15,11 @@ $ make
 ```
 
 # インストール方法
-現在は連携対象のChrome拡張機能 [BoxUtils](https://github.com/sattoke/BoxUtils) がChromeウェブストアに登録されていないため、環境ごとに異なる拡張機能IDをインストール時に指定する必要があることに注意。
+## BoxUtilsをchrome ウェブストアからインストールした場合
+1. インストーラー (Install.exe) を実行
+1. 拡張機能のIDの入力を求められる画面ではデフォルトの値 ( `gagpkhipmdbjnflmcfjjchoielldogmm` ) のまま、後はインストーラの指示通りに進めればよい。
+
+## BoxUtilsをchrome ウェブストア以外(GitHub)からインストールした場合
 
 1. 予めChrome拡張機能 [BoxUtils](https://github.com/sattoke/BoxUtils) をインストールしておく
 1. Chromeのアドレスバーに `chrome://extensions/` と入力するか、Chromeのメニュー（ケバブメニュー）から、「設定」→「拡張機能」と選択することで拡張機能の管理画面を開く

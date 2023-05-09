@@ -24,7 +24,7 @@ Page instfiles
 LicenseData LICENSE
 
 Function .onInit
-    StrCpy $Text_State "fgcoeikpcffiecgbanbaaoigcggkgihd"
+    StrCpy $Text_State "gagpkhipmdbjnflmcfjjchoielldogmm"
 FunctionEnd
 
 Function nsDialogsPage
