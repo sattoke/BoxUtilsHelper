@@ -7,7 +7,7 @@ ${Using:StrFunc} StrRep
 Unicode true
 LoadLanguageFile "${NSISDIR}\Contrib\Language files\Japanese.nlf"
 Name "BoxUtilsHelper"
-OutFile "Install.exe"
+OutFile "Install-__VERSION__.__ARCH__.exe"
 InstallDir "$LOCALAPPDATA\BoxUtilsHelper"
 RequestExecutionLevel user
 XPStyle on
@@ -55,12 +55,18 @@ Section
     !insertmacro _ReplaceInFile "$INSTDIR\boxutils-helper.json" "__EXTENSION_ID__" "$Text_State"
     WriteUninstaller "$INSTDIR\Uninstall.exe"
     WriteRegStr HKCU "Software\Google\Chrome\NativeMessagingHosts\jp.toke.boxutils_helper" "" "$INSTDIR\boxutils-helper.json"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\jp.toke.boxutils_helper" "DisplayName" "BoxUtilsHelper"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\jp.toke.boxutils_helper" "DisplayVersion" "__VERSION__"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\jp.toke.boxutils_helper" "UninstallString" "$INSTDIR\Uninstall.exe"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\jp.toke.boxutils_helper" "Publisher" "toke.jp"
 SectionEnd
 
 Section "Uninstall"
     Delete "$INSTDIR\Uninstall.exe"
     Delete "$INSTDIR\boxutils-helper.exe"
     Delete "$INSTDIR\boxutils-helper.json"
+    Delete "$INSTDIR\boxutils-helper.json.old"
     RMDir "$INSTDIR"
     DeleteRegKey HKCU "Software\Google\Chrome\NativeMessagingHosts\jp.toke.boxutils_helper"
+    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\jp.toke.boxutils_helper"
 SectionEnd
