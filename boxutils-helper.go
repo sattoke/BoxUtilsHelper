@@ -55,14 +55,22 @@ func main() {
 	}
 
 	var cmd *exec.Cmd
+    // 特定の環境(管理者権限もなく色々な制限があらかじめ加えられている環境)でexplorerを(CLIの)オプションなしでexecすると
+    // フォルダーツリーを当該フォルダまで展開する(explorerのGUIの)オプションが有効になっているにも関わらず、
+    // フォルダーツリーが展開されない事象が起きる。
+    // 試行錯誤の結果、/rootオプションをつけるとなぜか解消されることがわかったのでワークアラウンドとして/rootをつける。
+    // ちなみにexplorerの/rootオプションは昔のWindowsではchroot的なオプションだったはずだが、
+    // Windows10やWindows11のexplorerで試してみるとそのような効果はないようだ。
+    // なお /select オプションの効果(指定したファイルを選択した状態でフォルダを開く)をあきらめれば、
+    // explorerではなくstartを用いることで同等の機能を実現することはできる。
 	if dat["method"] == "openFile" || info.IsDir() {
 		// methodがopenFileの場合は、対象がファイルなら関連付けられたアプリで開き、
 		// 対象がフォルダの場合はフォルダを開く。
 		// methodがopenFolderで対象がフォルダの場合もそのフォルダを自体を開く。
-		cmd = exec.Command("explorer.exe", path)
+		cmd = exec.Command("explorer.exe", "/root,", path)
 	} else {
 		// methodがopenFolderで対象がファイルの場合は、ファイルがあるフォルダを開く
-		cmd = exec.Command("explorer.exe", "/select,", path)
+		cmd = exec.Command("explorer.exe", "/select,/root,", path)
 	}
 	err = cmd.Run()
 	if err != nil {
